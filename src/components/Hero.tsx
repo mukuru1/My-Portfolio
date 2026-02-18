@@ -13,7 +13,7 @@ const Hero: React.FC = () => {
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-teal-50"></div>
-      
+
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-10 -right-10 w-80 h-80 bg-indigo-100 rounded-full opacity-20 animate-pulse"></div>
@@ -28,9 +28,9 @@ const Hero: React.FC = () => {
               Responsive Websites
             </span>
           </h1>
-          
+
           <p className="text-xl sm:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Freelance Front-End Web Developer — Transforming ideas into beautiful, 
+            Freelance Front-End Web Developer — Transforming ideas into beautiful,
             high-performing web experiences with HTML, CSS, and JavaScript.
           </p>
 
@@ -42,11 +42,15 @@ const Hero: React.FC = () => {
               <span>Hire Me</span>
               <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
             </button>
-            
-            <button className="group border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-semibold text-lg hover:border-indigo-600 hover:text-indigo-600 transition-all duration-200 flex items-center space-x-2 hover:scale-105">
+
+            <a
+              href="/EdwinJunior_Kabenga_CVV (1).pdf"
+              download="EdwinJunior_Kabenga_CV.pdf"
+              className="group border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-semibold text-lg hover:border-indigo-600 hover:text-indigo-600 transition-all duration-200 flex items-center space-x-2 hover:scale-105"
+            >
               <Download className="h-5 w-5" />
               <span>Download CV</span>
-            </button>
+            </a>
           </div>
 
           {/* Stats */}
