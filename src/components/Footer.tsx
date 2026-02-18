@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
               <span className="text-xl font-bold">Mukuru Designs</span>
             </div>
             <p className="text-gray-400 leading-relaxed">
-              Transforming ideas into beautiful, high-performing web experiences. 
+              Transforming ideas into beautiful, high-performing web experiences.
               Let's build something amazing together.
             </p>
           </div>
@@ -56,19 +56,23 @@ const Footer: React.FC = () => {
             </div>
             <div className="flex space-x-4 pt-4">
               <a
-                href="#"
+                href="https://github.com/YOUR_USERNAME"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gray-800 p-3 rounded-full hover:bg-gray-700 transition-colors duration-200"
               >
                 <Github className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://linkedin.com/in/YOUR_USERNAME"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gray-800 p-3 rounded-full hover:bg-gray-700 transition-colors duration-200"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="#contact"
                 className="bg-gray-800 p-3 rounded-full hover:bg-gray-700 transition-colors duration-200"
               >
                 <MessageCircle className="h-5 w-5" />
@@ -84,11 +88,11 @@ const Footer: React.FC = () => {
               <Heart className="h-4 w-4 text-red-500" />
               <span>by Mukuru</span>
             </div>
-            
+
             <div className="text-gray-400">
               © {currentYear} Mukuru Designs. All rights reserved.
             </div>
-            
+
             <button
               onClick={scrollToTop}
               className="bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 transition-colors duration-200 text-sm"

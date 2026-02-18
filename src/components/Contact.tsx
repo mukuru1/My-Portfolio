@@ -21,17 +21,40 @@ const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/kabengaedwin@gmail.com", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          ...formData,
+          _subject: `New Message from ${formData.name} - Portfolio`,
+          _template: "table"
+        })
+      });
+
+      if (!response.ok) throw new Error('Submission failed');
+
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
-      
+
       setTimeout(() => {
         setSubmitStatus('idle');
-      }, 3000);
-    }, 1000);
+      }, 5000);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+
+      setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -50,8 +73,8 @@ const Contact: React.FC = () => {
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h3>
               <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                I'm always interested in hearing about new projects and opportunities. 
-                Whether you're looking to build something from scratch or need help with 
+                I'm always interested in hearing about new projects and opportunities.
+                Whether you're looking to build something from scratch or need help with
                 an existing project, I'd love to hear from you.
               </p>
             </div>
@@ -66,17 +89,17 @@ const Contact: React.FC = () => {
                   <div className="text-gray-600">kabengaedwin@gmail.com</div>
                 </div>
               </div>
-              
+
               <div className="flex items-center space-x-4">
                 <div className="bg-teal-100 p-3 rounded-full">
                   <Phone className="h-6 w-6 text-teal-600" />
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">Phone</div>
-                  <div className="text-gray-600">+250 78052876</div>
+                  <div className="text-gray-600">+250 780528976</div>
                 </div>
               </div>
-              
+
               <div className="flex items-center space-x-4">
                 <div className="bg-indigo-100 p-3 rounded-full">
                   <MapPin className="h-6 w-6 text-indigo-600" />
@@ -93,19 +116,23 @@ const Contact: React.FC = () => {
               <h4 className="font-semibold text-gray-900 mb-4">Connect with me</h4>
               <div className="flex space-x-4">
                 <a
-                  href="#"
+                  href="https://github.com/YOUR_USERNAME"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-gray-800 text-white p-3 rounded-full hover:bg-gray-700 transition-colors duration-200"
                 >
                   <Github className="h-5 w-5" />
                 </a>
                 <a
-                  href="#"
+                  href="https://linkedin.com/in/YOUR_USERNAME"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-colors duration-200"
                 >
                   <Linkedin className="h-5 w-5" />
                 </a>
                 <a
-                  href="#"
+                  href="#contact"
                   className="bg-green-600 text-white p-3 rounded-full hover:bg-green-700 transition-colors duration-200"
                 >
                   <MessageCircle className="h-5 w-5" />
@@ -132,7 +159,7 @@ const Contact: React.FC = () => {
                   placeholder="Your full name"
                 />
               </div>
-              
+
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                   Email
@@ -148,7 +175,7 @@ const Contact: React.FC = () => {
                   placeholder="your.email@example.com"
                 />
               </div>
-              
+
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                   Message
@@ -164,7 +191,7 @@ const Contact: React.FC = () => {
                   placeholder="Tell me about your project..."
                 />
               </div>
-              
+
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -179,10 +206,15 @@ const Contact: React.FC = () => {
                   </>
                 )}
               </button>
-              
+
               {submitStatus === 'success' && (
                 <div className="text-green-600 text-center font-medium">
                   Thank you! Your message has been sent successfully.
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="text-red-600 text-center font-medium">
+                  Something went wrong. Please try again later.
                 </div>
               )}
             </form>
